@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Books";
+    Layout = "~/Views/Dashboard/Index.cshtml";
+}
+
+@using LibraryManagement.Models;
+
+@model List<Book>
+
+
+<div class="row mb-3">
+    <div class="col-12">
+        <a class="btn btn-primary float-right" href="/Dashboard/Books/Create">Create</a>
+    </div>
+</div>
+
+<table class="table" id="allstudent">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Year Of Publishion</th>
+            <th scope="col">No Of Pages</th>
+            <th scope="col">Available</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Publisher</td>
+                <td>@book.YearOfPublication</td>
+                <td>@book.NoOfPages</td>
+                <td>@book.Available</td>
+                <td><a href="Book/@book.Id">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Dashboard/Index.cshtml";
+}
+@using LibraryManagement.Models
+@model User
+<div class="row mb-5">
+    <div class="col-12 font-weight-bold">
+        Profile Information
+    </div>
+</div>
+
+
+
+<div class="row">
+    @using (Html.BeginForm("updateprofile", "Dashboard", FormMethod.Post, new { @class = "row form-signin" }))
+    {
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">First Name</label>
+                <div class="col-12">
+
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Enter Firstname" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Last Name</label>
+                <div class="col-12">
+
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Enter LastName" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Email</label>
+                <div class="col-12">
+
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Address</label>
+                <div class="col-12">
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Enter Address" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">TFN</label>
+                <div class="col-12">
+                    @Html.TextBoxFor(m => m.Tfn, new { @class = "form-control", @placeholder = "Enter TFN" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">DOB</label>
+                <div class="col-12">
+                    @Html.TextBoxFor(m => m.Dob, new { @class = "form-control", @placeholder = "Enter Email", @id = "dateofbirth" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 ">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Phone Number</label>
+                <div class="col-12">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Enter Email" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Department</label>
+                <div class="col-12">
+                    <input class="form-control" id="focusedInput" type="text" value="@ViewBag.departmentName" disabled>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-2 mb-5">
+            <button class="btn btn-primary btn-block text-uppercase" type="submit">Save</button>
+        </div>
+
+
+    }
+
+</div>
+

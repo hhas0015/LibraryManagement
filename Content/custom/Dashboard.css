@@ -1,0 +1,27 @@
+﻿.active {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.inactive {
+    color: #fff;
+    background-color: rgba(0,0,0,0.2);
+    border-color: #545b62;
+}
+
+.nav-item a {
+    color: #ffffff !important;
+}
+
+.nav-item {
+    border-radius: .5rem !important;
+}
+
+.dataTables_length{
+    float:left !important;
+}
+
+.dataTables_filter{
+    float:right !important;
+}

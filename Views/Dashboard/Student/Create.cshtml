@@ -1,0 +1,107 @@
+﻿@model LibraryManagement.Models.User
+
+@{
+    ViewBag.Title = "Student";
+    Layout = "~/Views/Dashboard/Index.cshtml";
+}
+
+<h2>Create</h2>
+<hr />
+<div class="row">
+    @using (Html.BeginForm("creaetNewStudent", "Dashboard", FormMethod.Post, new { @class = "row form-signin" }))
+    {
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">First Name</label>
+                <div class="col-12">
+
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Enter Firstname" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Last Name</label>
+                <div class="col-12">
+
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Enter LastName" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Email</label>
+                <div class="col-12">
+
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Address</label>
+                <div class="col-12">
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Enter Address" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">TFN</label>
+                <div class="col-12">
+                    @Html.TextBoxFor(m => m.Tfn, new { @class = "form-control", @placeholder = "Enter TFN" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">DOB</label>
+                <div class="col-12">
+                    @Html.TextBoxFor(m => m.Dob, new { @class = "form-control", @placeholder = "Enter Email", @id = "dateofbirth" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 ">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Phone Number</label>
+                <div class="col-12">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Enter Email" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label class="col-12 control-label text-monospace font-weight-bold">Department</label>
+                <div class="col-12">
+                    @*@Html.DropDownList("DeaprtmentList",ViewBag.departments as SelectList,vi,new { @class = "custom-select",name="studentdepartment" })*@
+
+                    @Html.DropDownListFor(m => m.DepartmentId, ViewBag.departments as SelectList)
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mb-5">
+            <button class="btn btn-primary px-4" type="submit">Create</button>
+            <button class="btn btn-secondary px-4" type="button"><a class=" text-white" href="/Dashboard/Student">Back</a></button>
+        </div>
+
+
+    }
+
+</div>
+
+
