@@ -8,6 +8,13 @@ namespace LibraryManagement.Models
 
     public partial class Book
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Book()
+        {
+            Transactions = new HashSet<Transaction>();
+            Transactions1 = new HashSet<Transaction>();
+        }
+
         public int Id { get; set; }
 
         [StringLength(100)]
@@ -26,5 +33,11 @@ namespace LibraryManagement.Models
 
         [StringLength(10)]
         public string Available { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaction> Transactions { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaction> Transactions1 { get; set; }
     }
 }

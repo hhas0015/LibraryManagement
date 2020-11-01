@@ -22,7 +22,8 @@
 <div class="row">
     @using (Html.BeginForm("updateprofile", "Dashboard", FormMethod.Post, new { @class = "row form-signin" }))
     {
-        @Html.HiddenFor( m => m.Id)
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
         <div class="col-12 col-md-6">
             <div class="form-group">
                 <label class="col-12 control-label text-monospace font-weight-bold">First Name</label>

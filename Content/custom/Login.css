@@ -5,9 +5,13 @@
 
 body {
     background: #007bff;
-    background: linear-gradient(to right, #c5c5c5, #F57C00);
+    background: linear-gradient(to right, #c5c5c5, #3f3d3a);
 }
 
+.card {
+    color: #fff;
+    background: #4a4845;
+}
 .card-signin {
     border: 0;
     border-radius: 1rem;

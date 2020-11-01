@@ -5,40 +5,85 @@
 }
 <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
 <link href="~/Content/custom/Dashboard.css" rel="stylesheet" />
-<div class="container-fluid" ">
+<div class="container-fluid" >
     <div class="row mt-5">
         <div class="col-12 col-md-2">
             <ul class="nav nav-pills">
 
                 <div class="col-12 mb-4">
-                    <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Home" ? "active" : "inactive")">@Html.ActionLink("Home", "Home", "Dashboard", null, new
-                                                                                                                   {
-                                                                                                                       @class = "nav-link"
-                                                                                                                   })</li>
+                    <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Home" ? "active" : "inactive")">
+                        @Html.ActionLink("Home", "Home", "Dashboard", null, new
+       {
+           @class = "nav-link"
+       })
+                    </li>
+
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Librarian"))
+                    {
+
+                        <div class="col-12 mb-4">
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Student" ? "active" : "inactive")">
+                                @Html.ActionLink("Student", "Student", "Dashboard", null, new
+                                {
+                                     @class = "nav-link"
+                                })
+                            </li>
+
+                        </div>
+                        <div class="col-12 mb-4">
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Newsletter" ? "active" : "inactive")">
+                                @Html.ActionLink("Newsletter", "NewsLetter", "Dashboard", null, new
+                                {
+                                     @class = "nav-link"
+                                })
+                            </li>
+
+                        </div>
+
+                    }
+
+                    if (User.IsInRole("Student"))
+                    {
+
+                        <div class="col-12 mb-4">
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Student" ? "active" : "inactive")">
+                                @Html.ActionLink("My Books", "MyBooks", "Dashboard", null, new
+                                {
+                                     @class = "nav-link"
+                                })
+                            </li>
+
+                        </div>
+
+                    }
+
+
+                }
+                else
+                {
+
+                }
+
+
+                <div class="col-12 mb-4">
+                    <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Books" ? "active" : "inactive")">
+                        @Html.ActionLink("Books", "Books", "Dashboard", null, new
+       {
+           @class = "nav-link"
+       })
+                    </li>
 
                 </div>
 
                 <div class="col-12 mb-4">
-                    <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Student" ? "active" : "inactive")">@Html.ActionLink("Student", "Student", "Dashboard", null, new
-                                                                                                                      {
-                                                                                                                          @class = "nav-link"
-                                                                                                                      })</li>
-
-                </div>
-
-                <div class="col-12 mb-4">
-                    <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Books" ? "active" : "inactive")">@Html.ActionLink("Books", "Books", "Dashboard", null, new
-                                                                                                                    {
-                                                                                                                        @class = "nav-link"
-                                                                                                                    })</li>
-
-                </div>
-
-                <div class="col-12 mb-4">
-                    <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "active" : "inactive")">@Html.ActionLink("Profile", "Profile", "Dashboard", null, new
-                                                                                                                      {
-                                                                                                                          @class = "nav-link"
-                                                                                                                      })
+                    <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "active" : "inactive")">
+                        @Html.ActionLink("Profile", "Profile", "Dashboard", null, new
+       {
+           @class = "nav-link"
+       })
                     </li>
 
                 </div>
@@ -46,7 +91,7 @@
             </ul>
         </div>
 
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-10">
             @RenderBody()
         </div>
 

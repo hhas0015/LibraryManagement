@@ -15,15 +15,16 @@
                     @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-signin" }))
                     {
 
+                        @Html.AntiForgeryToken()
                         <div class="form-label-group">
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email Address", @id = "inputEmail" })
-                            @Html.ValidationMessageFor( m => m.Email,null, new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
                             <label for="inputEmail">Email address</label>
                         </div>
 
                         <div class="form-label-group">
                             @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter Passsword", @id = "inputPassword" })
-                            @Html.ValidationMessageFor( m => m.Password,null, new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
                             <label for="inputPassword">Password</label>
                         </div>
 

@@ -1,0 +1,56 @@
+﻿@model LibraryManagement.Models.Email
+
+@{
+    ViewBag.Title = "NewsLetter";
+    Layout = "~/Views/Dashboard/Index.cshtml";
+}
+
+
+
+<div class="container">
+    <h4 class="text-info">NewsLetter</h4>
+    <hr />
+    <div class="row mt-4">
+        @using (Html.BeginForm("SendNewsletter", "Dashboard", FormMethod.Post, new { @class = "row form-signin",@enctype = "multipart/form-data" }))
+        {
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="col-12 control-label text-monospace font-weight-bold">Email Subject</label>
+                    <div class="col-12">
+
+                        @Html.TextBoxFor(m => m.subject, new { @class = "form-control", @placeholder = "Enter Email Subject" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="col-12 control-label text-monospace font-weight-bold">Email Content</label>
+                    <div class="col-12">
+
+                        @Html.TextBoxFor(m => m.content, new { @class = "form-control", @placeholder = "Enter Email Content" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="form-group">
+                    <label class="col-12 control-label text-monospace font-weight-bold">Choose Attachment</label>
+                    <div class="col-12">
+
+                        @Html.TextBoxFor(m => m.fileAttachment, new { type = "file" })
+                        @Html.ValidationMessageFor(m => m.fileAttachment)
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mt-4">
+                <button class="btn btn-primary px-4" type="submit">Post</button>
+            </div>
+
+        }
+    </div>
+</div>

@@ -13,9 +13,10 @@ namespace LibraryManagement.Controllers
         // GET: Account
         public ActionResult Login()
         {
-            return View();
+            return View("Login");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
         {
             if ( ModelState.IsValid )
@@ -37,5 +38,14 @@ namespace LibraryManagement.Controllers
 
             return View();
         }
+        
+       [Route("Acount/Logout")]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account");
+        }
+
+
     }
 }

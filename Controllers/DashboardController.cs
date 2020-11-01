@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
+
+using LibraryManagement.Utils;
+
 namespace LibraryManagement.Controllers
 {
     [Authorize]
@@ -22,12 +25,47 @@ namespace LibraryManagement.Controllers
         }
 
         
+
         public ActionResult Student()
         {
             var context = new ApplicationContextDb();
             List<User> students = context.Users.ToList();
 
-            return View("Student/index",students);
+            List<User> studentsList = (from user in context.Users
+                                       where user.RoleId == 2
+                                       select user).ToList<User>();
+
+            return View("Student/index", studentsList);
+        }
+
+        [HttpPost]
+        public ActionResult SendNewsletter(Email email)
+        {
+            var file = email.fileAttachment.InputStream.ReadByte();
+            EmailSender emailSender = new EmailSender();
+
+            var context = new ApplicationContextDb();
+
+            List<User> studentList = (from user in context.Users
+                                      where user.RoleId == 2
+                                      select user).ToList<User>();
+
+            List<string> emailList = new List<string>();
+
+            foreach(User st in studentList)
+            {
+                emailList.Add(st.Email);
+            }
+
+            emailSender.SendMailAttachment(email, emailList);
+            return View("NewsLetter");
+        }
+
+        public ActionResult NewsLetter()
+        {
+            
+
+            return View();
         }
 
         [Route("Dashboard/Student/{studentId}")]
@@ -56,6 +94,7 @@ namespace LibraryManagement.Controllers
             return View(user);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult updateprofile(User user)
         {
             var context = new ApplicationContextDb();
@@ -86,8 +125,28 @@ namespace LibraryManagement.Controllers
         }
 
 
+        public ActionResult NotifyStudent( Book book )
+        {
+            var context = new ApplicationContextDb();
+
+            Transaction trans = context.Transactions.FirstOrDefault( x => x.BookId == book.Id && x.Status == "issued" );
+
+            User stud = context.Users.FirstOrDefault( x => x.Id == trans.StudentId );
+
+            EmailSender email = new EmailSender();
+
+            //String toEmail = "harsha.august@gmail.com";
+
+            String message = "Please return the book: " + book.Title;
+
+            email.Send(stud.Email, "Monash Library", message);
+            return RedirectToAction("Books", "Dashboard");
+
+        }
+
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult creaetNewStudent(User user, FormCollection form)
         {
 
@@ -104,7 +163,7 @@ namespace LibraryManagement.Controllers
 
                 context.Users.Add(user);
                 context.SaveChanges();
-                return View("Student/");
+                return View("Student/Create");
             }
 
             return View("Student/Create");

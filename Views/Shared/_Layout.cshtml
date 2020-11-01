@@ -6,22 +6,127 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="p-0 m-0">
+<body class="p-0 m-0 " style="overflow-x:hidden;">
     <nav class="navbar navbar-dark bg-dark py-3">
         <a class="navbar-brand" href="#">
-            <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            <img src="~/Content/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
             Monash Library
         </a>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h6 class="text-white">Welcome - @User.Identity.Name</h6>
+
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            @Html.ActionLink("Logout", "Logout", "Acount", null, new { @class = "btn btn-primary" })
+        }
+
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         @RenderBody()
-        
+
 
     </div>
+    <footer class="bg-dark ">
+        <div class="row text-center">
+            <div class="col-12 col-md-4">
+                <h4 class="text-info text-left px-4 py-2"> Quick Links</h4>
+                <p class="text-info text-left px-4">
+                    Important dates<br />
+                    Pay online<br />
+                    Data protection and privacy<br />
+                    Library<br />
+                    Maps<br />
+                </p>
+            </div>
 
-@*    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+
+            <div class="col-12 col-md-4">
+                <h4 class="text-info text-left px-4 py-2"> Contact Us</h4>
+                <div class="row">
+                    <div class="col-2 text-right p-0">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-map-marker fa-stack-1x fa-inverse text-danger"></i>
+                        </span>
+                    </div>
+                    <div class="col-10 text-white text-left">
+                        Monash University,
+                        Wellington Rd, Clayton VIC 3800
+                        Australia
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 text-right p-0">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-phone fa-stack-1x fa-inverse text-info"></i>
+                        </span>
+                    </div>
+                    <div class="col-10 text-white text-left d-flex align-items-center">
+                        +61 3 9902 6011
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 text-right p-0">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope fa-stack-1x fa-inverse text-white"></i>
+                        </span>
+                    </div>
+                    <div class="col-10 text-info text-left d-flex align-items-center">
+                        library@monash.support.edu
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-4">
+                <h4 class="text-info text-left px-4 py-2"> Connect Us</h4>
+                <p class="text-info text-left px-4">
+                    <span class="fa-stack fa-lg ">
+                        <i class="fa fa-square fa-stack-2x" style="color: #3b5998;"></i>
+                        <i class="fa fa-facebook fa-stack-1x fa-inverse text-white"></i>
+                    </span>
+                    <span class="fa-stack fa-lg ">
+                        <i class="fa fa-square fa-stack-2x" style="color: #1DA1F2;"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse text-white"></i>
+                    </span>
+                    <span class="fa-stack fa-lg ">
+                        <i class="fa fa-square fa-stack-2x" style="color: #0e76a8;"></i>
+                        <i class="fa fa-linkedin fa-stack-1x fa-inverse text-white"></i>
+                    </span>
+                    <span class="fa-stack fa-lg ">
+                        <i class="fa fa-square fa-stack-2x" style="color: #ea4355;"></i>
+                        <i class="fa fa-google fa-stack-1x fa-inverse text-white"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-square fa-stack-2x" style="color: #E1306C;"></i>
+                        <i class="fa fa-instagram fa-stack-1x fa-inverse text-white"></i>
+                    </span>
+
+                </p>
+            </div>
+
+        </div>
+
+        <div class="row py-3 bg-primary">
+            <div class="col-12 text-center text-white">
+                Copyrights <i class="fa fa-copyright" aria-hidden="true"></i> 2020 Monash Library
+            </div>
+        </div>
+
+    </footer>
+
+    @*    @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

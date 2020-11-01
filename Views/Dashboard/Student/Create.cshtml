@@ -10,6 +10,7 @@
 <div class="row">
     @using (Html.BeginForm("creaetNewStudent", "Dashboard", FormMethod.Post, new { @class = "row form-signin" }))
     {
+        @Html.AntiForgeryToken()
         <div class="col-12 col-md-6">
             <div class="form-group">
                 <label class="col-12 control-label text-monospace font-weight-bold">First Name</label>
