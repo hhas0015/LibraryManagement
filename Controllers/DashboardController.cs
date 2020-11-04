@@ -97,18 +97,23 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult updateprofile(User user)
         {
-            var context = new ApplicationContextDb();
-            String userEmail = HttpContext.User.Identity.Name;
-            User userDb = context.Users.FirstOrDefault(x => x.Id == user.Id);
-            userDb.FirstName = user.FirstName;
-            userDb.LastName = user.LastName;
-            userDb.Email = user.Email;
-            userDb.Address = user.Address;
-            userDb.Tfn = user.Tfn;
-            userDb.Dob = user.Dob;
-            userDb.PhoneNumber = user.PhoneNumber;
 
-            context.SaveChanges();
+            var context = new ApplicationContextDb();
+            if (ModelState.IsValid)
+            {
+                String userEmail = HttpContext.User.Identity.Name;
+                User userDb = context.Users.FirstOrDefault(x => x.Id == user.Id);
+                userDb.FirstName = user.FirstName;
+                userDb.LastName = user.LastName;
+                userDb.Email = user.Email;
+                userDb.Address = user.Address;
+                userDb.Tfn = user.Tfn;
+                userDb.Dob = user.Dob;
+                userDb.PhoneNumber = user.PhoneNumber;
+
+                context.SaveChanges();
+            }
+            
             return RedirectToAction("Student");
            
         }
@@ -149,17 +154,18 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult creaetNewStudent(User user, FormCollection form)
         {
+            var context = new ApplicationContextDb();
+
+            var getdepartmentList = context.Departments.ToList();
+            SelectList departList = new SelectList(getdepartmentList, "DepartmentId", "DepartmentName");
+            ViewBag.departments = departList;
 
 
             if ( ModelState.IsValid )
             {
                 user.RoleId = 2;
                 user.Password = "test";
-                var context = new ApplicationContextDb();
-
-                var getdepartmentList = context.Departments.ToList();
-                SelectList departList = new SelectList(getdepartmentList, "DepartmentId", "DepartmentName");
-                ViewBag.departments = departList;
+                
 
                 context.Users.Add(user);
                 context.SaveChanges();

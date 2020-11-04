@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace LibraryManagement.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
         // GET: Books
@@ -96,12 +97,16 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult returnMyBook(Transaction trans)
         {
-            var context = new ApplicationContextDb();
-            Transaction transDb = context.Transactions.FirstOrDefault(x => x.TransactionId == trans.TransactionId);
-            transDb.Status = "Returned";
-            Book bookDb = context.Books.FirstOrDefault(x => x.Id == trans.BookId);
-            bookDb.Available = "True";
-            context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                var context = new ApplicationContextDb();
+                Transaction transDb = context.Transactions.FirstOrDefault(x => x.TransactionId == trans.TransactionId);
+                transDb.Status = "Returned";
+                Book bookDb = context.Books.FirstOrDefault(x => x.Id == trans.BookId);
+                bookDb.Available = "True";
+                context.SaveChanges();
+            }
+                
             return RedirectToAction("MyBooks");
         }
 
@@ -109,15 +114,20 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult updateBookInfo(Book book)
         {
-            var context = new ApplicationContextDb();
-            Book bookDb = context.Books.FirstOrDefault(x => x.Id == book.Id);
-            bookDb.Title = book.Title;
-            bookDb.Author = book.Author;
-            bookDb.Publisher = book.Publisher;
-            bookDb.YearOfPublication = book.YearOfPublication;
-            bookDb.NoOfPages = book.NoOfPages;
-            context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                var context = new ApplicationContextDb();
+                Book bookDb = context.Books.FirstOrDefault(x => x.Id == book.Id);
+                bookDb.Title = book.Title;
+                bookDb.Author = book.Author;
+                bookDb.Publisher = book.Publisher;
+                bookDb.YearOfPublication = book.YearOfPublication;
+                bookDb.NoOfPages = book.NoOfPages;
+                context.SaveChanges();
+                return RedirectToAction("Books");
+            }
             return RedirectToAction("Books");
+
         }
 
         [HttpPost]

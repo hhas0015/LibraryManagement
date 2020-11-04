@@ -17,6 +17,7 @@
                 <div class="col-12">
 
                     @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Enter Firstname" })
+                    @Html.ValidationMessageFor( m => m.FirstName, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -27,6 +28,7 @@
                 <div class="col-12">
 
                     @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Enter LastName" })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
 
                 </div>
             </div>
@@ -38,7 +40,7 @@
                 <div class="col-12">
 
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email" })
-
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -48,7 +50,7 @@
                 <label class="col-12 control-label text-monospace font-weight-bold">Address</label>
                 <div class="col-12">
                     @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Enter Address" })
-
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -58,6 +60,7 @@
                 <label class="col-12 control-label text-monospace font-weight-bold">TFN</label>
                 <div class="col-12">
                     @Html.TextBoxFor(m => m.Tfn, new { @class = "form-control", @placeholder = "Enter TFN" })
+                    @Html.ValidationMessageFor(m => m.Tfn, "", new { @class = "text-danger" })
 
                 </div>
             </div>
@@ -67,7 +70,7 @@
             <div class="form-group">
                 <label class="col-12 control-label text-monospace font-weight-bold">DOB</label>
                 <div class="col-12">
-                    @Html.TextBoxFor(m => m.Dob, new { @class = "form-control", @placeholder = "Enter Email", @id = "dateofbirth" })
+                    @Html.TextBoxFor(m => m.Dob, new { @type="date", @class = "form-control", @placeholder = "Enter Email", @id = "dateofbirth" })
 
                 </div>
             </div>
@@ -77,8 +80,8 @@
             <div class="form-group">
                 <label class="col-12 control-label text-monospace font-weight-bold">Phone Number</label>
                 <div class="col-12">
-                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Enter Email" })
-
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Enter Phone" })
+                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -89,7 +92,7 @@
                 <div class="col-12">
                     @*@Html.DropDownList("DeaprtmentList",ViewBag.departments as SelectList,vi,new { @class = "custom-select",name="studentdepartment" })*@
 
-                    @Html.DropDownListFor(m => m.DepartmentId, ViewBag.departments as SelectList)
+                    @Html.DropDownListFor(m => m.DepartmentId, ViewBag.departments as SelectList,null, htmlAttributes: new { @class="form-control custom-select" } )
 
                 </div>
             </div>

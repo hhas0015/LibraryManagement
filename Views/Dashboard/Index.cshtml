@@ -34,7 +34,7 @@
 
                         </div>
                         <div class="col-12 mb-4">
-                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "Newsletter" ? "active" : "inactive")">
+                            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString() == "NewsLetter" ? "active" : "inactive")">
                                 @Html.ActionLink("Newsletter", "NewsLetter", "Dashboard", null, new
                                 {
                                      @class = "nav-link"

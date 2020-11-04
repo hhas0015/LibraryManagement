@@ -8,6 +8,10 @@ body {
     background: linear-gradient(to right, #c5c5c5, #3f3d3a);
 }
 
+input, select, textarea{
+    max-width:none !important;
+}
+
 .card {
     color: #fff;
     background: #4a4845;

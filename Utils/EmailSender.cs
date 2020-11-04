@@ -13,12 +13,14 @@ namespace LibraryManagement.Utils
 {
     public class EmailSender
     {
-        private const String API_KEY = "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";
+        //private const String API_KEY = "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";
+
+        private const String API_KEY = "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";
 
         public void Send(String toEmail, String subject, String contents)
         {
             var client = new SendGridClient(API_KEY);
-            var from = new EmailAddress("harsha.august6@gmail.com", "FIT5032 Example Email User");
+            var from = new EmailAddress("testemailyoga@gmail.com", "FIT5032 Example Email User");
 
             var to = new EmailAddress(toEmail, "");
             
@@ -33,7 +35,7 @@ namespace LibraryManagement.Utils
         public void SendMailAttachment(Email email, List<string> emailList)
         {
             var client = new SendGridClient(API_KEY);
-            var from = new EmailAddress("harsha.august6@gmail.com", "FIT5032 Example Email User");
+            var from = new EmailAddress("testemailyoga@gmail.com", "FIT5032 Example Email User");
 
 
             foreach(string toEmail in emailList)

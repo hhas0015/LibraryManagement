@@ -50,7 +50,7 @@
                 <label class="col-12 control-label text-monospace font-weight-bold">Year of Publishion</label>
                 <div class="col-12">
 
-                    @Html.EditorFor(model => model.YearOfPublication, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.YearOfPublication, new { htmlAttributes = new { @type = "date",@class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.YearOfPublication, "", new { @class = "text-danger" })
                 </div>
             </div>

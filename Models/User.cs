@@ -17,6 +17,9 @@ namespace LibraryManagement.Models
         public string LastName { get; set; }
 
         [StringLength(100)]
+        [Display(Name = "Email address")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [StringLength(500)]
@@ -29,6 +32,7 @@ namespace LibraryManagement.Models
         public DateTime? Dob { get; set; }
 
         [StringLength(50)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [StringLength(50)]
